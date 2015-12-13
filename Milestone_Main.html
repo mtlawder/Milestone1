@@ -1,0 +1,24 @@
+<!doctype html>
+<title>Milestone1</title>
+<link rel=stylesheet type=text/css href='{{ url_for('static',filename='style_lulu.css')}}'>
+<div class=page>
+  <h1>Pick a Stock to Check its Price</h1>
+  <div class=metanav>
+    <h4>
+      Please choose a stockticker symbol, (ex. ESRX for Express Scripts)
+    </h4>
+
+    <form id='stock_ticker' method='post' action='index_Main' >
+      <p>
+    Ticker Symbol: <input type='text' name='stock_symbol' />
+      </p>
+      <p>
+    <input type="radio" name="price_data" value="Cprice" checked> Closing Price
+    <input type="radio" name="price_data" value="Oprice"> Opening Price
+      <p>
+    <input type='submit' value='Submit' />
+      </p>
+    </form>
+
+  </div>
+</div>
