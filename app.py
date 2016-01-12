@@ -32,7 +32,7 @@ def quandl_search(query):
 @app.route('/index_Main',methods=['GET','POST'])
 def index_Main():
     if request.method =='GET':
-        Hval=pd.open_csv('test.csv')
+        Hval=pd.read_csv('test.csv')
         Hval2=Hval.loc[0]['NODE_NAME']
         return render_template('/Milestone_Main.html', Nodename=Hval2)
     else:
