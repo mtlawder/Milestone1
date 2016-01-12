@@ -32,7 +32,9 @@ def quandl_search(query):
 @app.route('/index_Main',methods=['GET','POST'])
 def index_Main():
     if request.method =='GET':
-        return render_template('/Milestone_Main.html', Nodename="")
+        Hval=pd.open_csv('test.csv')
+        Hval2=Hval.loc[0]['NODE_NAME']
+        return render_template('/Milestone_Main.html', Nodename=Hval2)
     else:
         node=request.form['nodename']
         NODE_info=pd.DataFrame({'NODE':['AMIL.EDWARDS2','AMMO.LABADIE1'],'STATE':['IL','MO'],'TYPE':['GEN','GEN']})
