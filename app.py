@@ -34,14 +34,16 @@ def index_Main():
     if request.method =='GET':
         return render_template('/Milestone_Main.html', Nodename="")
     else:
-        node=request.form['nodename']
-        NODE_info=pd.DataFrame({'NODE':['AMIL.EDWARDS2','AMMO.LABADIE1'],'STATE':['IL','MO'],'TYPE':['GEN','GEN']})
-        if any(NODE_info.NODE==node)==False:
-            return render_template('Milestone_Main.html', Nodename="Error, please check node name")
-        else:                  
-            node=request.form['nodename']
-            nodefind=NODE_info.loc[NODE_info['NODE']==node]
-            nodeout=nodefins.loc[0]['NODE']+", "+nodefind.loc[0]['STATE']+", "+nodefind.loc[0]['TYPE']
+        nodeout=request.form['nodename']
+
+#        node=request.form['nodename']
+#        NODE_info=pd.DataFrame({'NODE':['AMIL.EDWARDS2','AMMO.LABADIE1'],'STATE':['IL','MO'],'TYPE':['GEN','GEN']})
+#        if any(NODE_info.NODE==node)==False:
+#            return render_template('Milestone_Main.html', Nodename="Error, please check node name")
+#        else:                  
+#            node=request.form['nodename']
+#            nodefind=NODE_info.loc[NODE_info['NODE']==node]
+#            nodeout=nodefins.loc[0]['NODE']+", "+nodefind.loc[0]['STATE']+", "+nodefind.loc[0]['TYPE']
         
 #        Stock_Symbol =request.form['stock_symbol']
 #        dout= quandl_search(Stock_Symbol)
