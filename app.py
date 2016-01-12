@@ -13,10 +13,11 @@ import numpy as np
 import os
 
 api_key = 'cFuUY984Wxy1SpKr25zx'
+NODE_info=pd.DataFrame({'NODE':['AMIL.EDWARDS2','AMMO.LABADIE1'],'STATE':['IL','MO'],'TYPE':['GEN','GEN']})
 
 @app.route('/')
 def main():
-  return redirect('/index_Main')
+    return redirect('/index_Main')
 
 def quandl_search(query):
     url='https://www.quandl.com/api/v3/datasets/WIKI/' + query + '.json?auth_token=cFuUY984Wxy1SpKr25zx'
@@ -31,24 +32,20 @@ def quandl_search(query):
 @app.route('/index_Main',methods=['GET','POST'])
 def index_Main():
     if request.method =='GET':
-        return render_template('/Milestone_Main.html')
+        return render_template('/Milestone_Main.html', Nodename="")
     else:
-        Stock_Symbol =request.form['stock_symbol']
-        dout= quandl_search(Stock_Symbol)
+        node=request.form['nodename']
+        nodefind=NODE_info.loc[NODE_info['NODE']==node]
+        nodeout=nodefins.loc[0]['NODE']+", "+nodefind.loc[0]['STATE']+", "+nodefind.loc[0]['TYPE']
         
-        
-        p1=figure(x_axis_type='datetime')
-        Price_type=request.form['price_data']
-        if Price_type=='Cprice':
-            p1.line(np.array(dout['Date'],dtype=np.datetime64),dout['Close'])
-        else:
-            p1.line(np.array(dout['Date'],dtype=np.datetime64),dout['Open'])
-        
-        p1.xaxis.axis_label = "Date"
-        p1.yaxis.axis_label = "Price"
-        script, div = components(p1)
-        
-        return render_template('/Milestone_data.html',Stock=Stock_Symbol, script=script, div=div)
+#        Stock_Symbol =request.form['stock_symbol']
+#        dout= quandl_search(Stock_Symbol)
+#        
+#        
+#        p1=figure(x_axis_type='datetime')
+#        Price_type=request.form['price_data']
+#
+        return render_template('/Milestone_Main.html',Nodename=nodeout)
     
 
 if __name__ == '__main__':
