@@ -52,7 +52,7 @@ def index_Main():
 #        p1=figure(x_axis_type='datetime')
 #        Price_type=request.form['price_data']
 #
-            return render_template('/Milestone_Main.html',Nodename=nodeout)
+        return render_template('/Milestone_Main.html',Nodename=nodeout)
     
 
 if __name__ == '__main__':
