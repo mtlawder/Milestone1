@@ -42,8 +42,9 @@ def index_Main():
             nodeout=node+' is not a Node name'
             return render_template('Milestone_Main.html', Nodename=nodeout)
         else:
+            nodeout='works'
             nodefind=NODE_info.loc[NODE_info['NODE_NAME']==node]
-            nodeout=nodefind.loc[0]['NODE_NAME']+", "+nodefind.loc[0]['STATE']+", "+nodefind.loc[0]['TYPE']+", "+nodefind.loc[0]['LAT']+", "+nodefind.loc[0]['LONG']
+            #nodeout=nodefind.loc[0]['NODE_NAME']+", "+nodefind.loc[0]['STATE']+", "+nodefind.loc[0]['TYPE']+", "+nodefind.loc[0]['LAT']+", "+nodefind.loc[0]['LONG']
             return render_template('/Milestone_Main.html',Nodename=nodeout)
 
 #        node=request.form['nodename']
