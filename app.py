@@ -13,7 +13,7 @@ import numpy as np
 import os
 
 api_key = 'cFuUY984Wxy1SpKr25zx'
-NODE_info=pd.DataFrame({'NODE':['AMIL.EDWARDS2','AMMO.LABADIE1'],'STATE':['IL','MO'],'TYPE':['GEN','GEN']})
+
 
 @app.route('/')
 def main():
@@ -35,8 +35,13 @@ def index_Main():
         return render_template('/Milestone_Main.html', Nodename="")
     else:
         node=request.form['nodename']
-        nodefind=NODE_info.loc[NODE_info['NODE']==node]
-        nodeout=nodefins.loc[0]['NODE']+", "+nodefind.loc[0]['STATE']+", "+nodefind.loc[0]['TYPE']
+        NODE_info=pd.DataFrame({'NODE':['AMIL.EDWARDS2','AMMO.LABADIE1'],'STATE':['IL','MO'],'TYPE':['GEN','GEN']})
+        if any(NODE_info.NODE==node)==False:
+            return render_template('Milestone_Main.html', Nodename="Error, please check node name")
+        else:                  
+            node=request.form['nodename']
+            nodefind=NODE_info.loc[NODE_info['NODE']==node]
+            nodeout=nodefins.loc[0]['NODE']+", "+nodefind.loc[0]['STATE']+", "+nodefind.loc[0]['TYPE']
         
 #        Stock_Symbol =request.form['stock_symbol']
 #        dout= quandl_search(Stock_Symbol)
@@ -45,7 +50,7 @@ def index_Main():
 #        p1=figure(x_axis_type='datetime')
 #        Price_type=request.form['price_data']
 #
-        return render_template('/Milestone_Main.html',Nodename=nodeout)
+            return render_template('/Milestone_Main.html',Nodename=nodeout)
     
 
 if __name__ == '__main__':
