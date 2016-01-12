@@ -35,7 +35,8 @@ def index_Main():
         return render_template('/Milestone_Main.html', Nodename="")
     else:
         nodeout=request.form['nodename']
-
+        NODE_info=pd.DataFrame({'NODE':['AMIL.EDWARDS2','AMMO.LABADIE1'],'STATE':['IL','MO'],'TYPE':['GEN','GEN']})
+        nodeout=NODE_info.loc[1]['NODE']
 #        node=request.form['nodename']
 #        NODE_info=pd.DataFrame({'NODE':['AMIL.EDWARDS2','AMMO.LABADIE1'],'STATE':['IL','MO'],'TYPE':['GEN','GEN']})
 #        if any(NODE_info.NODE==node)==False:
