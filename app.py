@@ -38,11 +38,11 @@ def index_Main():
         NODE_info=pd.read_csv('N_info.csv')
         #Hval2=Hval.loc[0]['NODE_NAME']
         #NODE_info=pd.DataFrame({'NODE':['AMIL.EDWARDS2','AMMO.LABADIE1'],'STATE':['IL','MO'],'TYPE':['GEN','GEN']})
-        if any(NODE_info.NODE==node)==False:
+        if any(NODE_info.NODE_NAME==node)==False:
             nodeout=node+' is not a Node name'
             return render_template('Milestone_Main.html', Nodename=nodeout)
         else:
-            nodefind=NODE_info.loc[NODE_info['NODE']==node]
+            nodefind=NODE_info.loc[NODE_info['NODE_NAME']==node]
             nodeout=nodefind.loc[0]['NODE_NAME']+", "+nodefind.loc[0]['STATE']+", "+nodefind.loc[0]['TYPE']+", "+nodefind.loc[0]['LAT']+", "+nodefind.loc[0]['LONG']
             return render_template('/Milestone_Main.html',Nodename=nodeout)
 
