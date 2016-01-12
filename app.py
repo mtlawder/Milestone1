@@ -34,13 +34,18 @@ def index_Main():
     if request.method =='GET':
         return render_template('/Milestone_Main.html', Nodename="")
     else:
-        nodeout=request.form['nodename']
+        node=request.form['nodename']
         NODE_info=pd.DataFrame({'NODE':['AMIL.EDWARDS2','AMMO.LABADIE1'],'STATE':['IL','MO'],'TYPE':['GEN','GEN']})
-        nodeout=NODE_info.loc[1]['NODE']
+        if any(NODE_info.NODE==node)==False:
+            return render_template('Milestone_Main.html', Nodename=node+' is not a Node name")
+        else:
+            nodefind=NODE_info.loc[NODE_info['NODE']==node]
+            nodeout=nodefind.loc[0]['NODE']+", "+nodefind.loc[0]['STATE']+", "+nodefind.loc[0]['TYPE']
+            return render_template('/Milestone_Main.html',Nodename=nodeout)
+
 #        node=request.form['nodename']
 #        NODE_info=pd.DataFrame({'NODE':['AMIL.EDWARDS2','AMMO.LABADIE1'],'STATE':['IL','MO'],'TYPE':['GEN','GEN']})
-#        if any(NODE_info.NODE==node)==False:
-#            return render_template('Milestone_Main.html', Nodename="Error, please check node name")
+#        
 #        else:                  
 #            node=request.form['nodename']
 #            nodefind=NODE_info.loc[NODE_info['NODE']==node]
@@ -53,7 +58,7 @@ def index_Main():
 #        p1=figure(x_axis_type='datetime')
 #        Price_type=request.form['price_data']
 #
-        return render_template('/Milestone_Main.html',Nodename=nodeout)
+#        return render_template('/Milestone_Main.html',Nodename=nodeout)
     
 
 if __name__ == '__main__':
