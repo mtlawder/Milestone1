@@ -24,7 +24,7 @@ def plotbokeh(nodename):
     conn.close()
     return npriceseries
 
-def plotbokehcomp(node1, node2)
+#def plotbokehcomp(node1, node2)
     
     
 
@@ -51,7 +51,7 @@ def index_Main():
             node1n=NODE_info.loc[nodefind]['NODE_NAME']
             node1s=NODE_info.loc[nodefind]['STATE']
             node1t=NODE_info.loc[nodefind]['TYPE']
-            if nodenum=='1node':
+            if nodenum=='1nodes':
                 dfprice=plotbokeh(node1n)
                 bdate=np.array(dfprice['DATE'], dtype=np.datetime64)
                 bprice=np.array(dfprice['PRICE'])
