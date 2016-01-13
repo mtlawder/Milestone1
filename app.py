@@ -63,11 +63,15 @@ def index_Main():
             p1.yaxis.axis_label = "Price/MWh"
             script, div = components(p1)
             nodenum=request.form['nodenum']
+            if nodenum=='1nodes':
+                cout="True"
+            else:
+                cout="The other thing"
                 #return render_template('/Milestone_Main.html',Nodename="",node1n=node1n,node1s=node1s,node1t=node1t)
             #else:
             #    script='empty'
             #    div='empty'
-            return render_template('Onenode_plot.html',node1n=node1n, script=script, div=div,cout=nodenum)
+            return render_template('Onenode_plot.html',node1n=node1n, script=script, div=div,cout=cout)
 
 #@app.route('/Onenode_plot',methods=['GET','POST'])
 #def Onenode_plot():
