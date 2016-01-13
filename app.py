@@ -11,6 +11,7 @@ import json
 import pandas as pd
 import numpy as np
 import os
+import sqlite3
 
 api_key = 'cFuUY984Wxy1SpKr25zx'
 
@@ -32,7 +33,11 @@ def quandl_search(query):
 @app.route('/index_Main',methods=['GET','POST'])
 def index_Main():
     if request.method =='GET':
-        return render_template('/Milestone_Main.html', Nodename="",node1n="",node1s="",node1t="")
+        conn=sqlite3.connect('misodata.db')
+        A=pd.read_sql('SELECT * FROM testcase',conn)
+        conn.close()
+        B=A.loc[0]['NODE']
+        return render_template('/Milestone_Main.html', Nodename="",node1n="",node1s="",node1t=B)
     else:
         node=request.form['nodename']
         NODE_info=pd.read_csv('N_info.csv')
