@@ -51,7 +51,6 @@ def index_Main():
             out1=1
             dfprice=plotbokeh(node1n)
             p1=figure(x_axis_type='datetime')
-            Price_type=request.form['price_data']
             
             p1.line(dfprice['DATE'],dfprice['PRICE'])
             #np.array(
