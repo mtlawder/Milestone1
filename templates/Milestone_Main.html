@@ -11,6 +11,7 @@
     var input = document.createElement("input");
     input.type = "text";
     var div = document.createElement("div");
+    cbox.name="node2";
     div.id = cbox.name;
     div.innerHTML = "N2 ";
     div.appendChild(input);
@@ -43,7 +44,7 @@
          <p id="insertinputs"></p>
          
          
-         Check box if comparing two nodes  <input type="checkbox" name="check1" onclick="dynInput(this);" />
+        <input type="checkbox" name="check1" onclick="dynInput(this);"  value="False"/> Check box if comparing two nodes  
          <br>
          <input type='submit' value='Submit' >
          <br>
