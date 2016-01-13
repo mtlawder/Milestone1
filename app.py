@@ -51,22 +51,24 @@ def index_Main():
             node1s=NODE_info.loc[nodefind]['STATE']
             node1t=NODE_info.loc[nodefind]['TYPE']
             #if nodenum=='1nodes':
-            dfprice=plotbokeh(node1n)
-            bdate=np.array(dfprice['DATE'], dtype=np.datetime64)
-            bprice=np.array(dfprice['PRICE'])
-            p1=figure(x_axis_type='datetime')
-            p1.line(bdate,bprice)
-                #np.array(
-                #,dtype=np.datetime64)
-            p1.title = ' Energy Prices for ' + node1n
-            p1.xaxis.axis_label = "Date"
-            p1.yaxis.axis_label = "Price/MWh"
-            script, div = components(p1)
             nodenum=request.form['nodenum']
             if nodenum=='1nodes':
                 cout="True"
+                dfprice=plotbokeh(node1n)
+                bdate=np.array(dfprice['DATE'], dtype=np.datetime64)
+                bprice=np.array(dfprice['PRICE'])
+                p1=figure(x_axis_type='datetime')
+                p1.line(bdate,bprice)
+                #np.array(
+                #,dtype=np.datetime64)
+                p1.title = ' Energy Prices for ' + node1n
+                p1.xaxis.axis_label = "Date"
+                p1.yaxis.axis_label = "Price/MWh"
+                script, div = components(p1)
             else:
                 cout="The other thing"
+                script="empty"
+                div="empty"
                 #return render_template('/Milestone_Main.html',Nodename="",node1n=node1n,node1s=node1s,node1t=node1t)
             #else:
             #    script='empty'
