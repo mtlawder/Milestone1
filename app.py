@@ -50,9 +50,10 @@ def index_Main():
             node1t=NODE_info.loc[nodefind]['TYPE']
             out1=1
             dfprice=plotbokeh(node1n)
+            bdate=np.array(dfprice['DATE'], dtype=np.datetime64)
+            bprice=np.array(dfprice['PRICE'])
             p1=figure(x_axis_type='datetime')
-            
-            p1.line(dfprice['DATE'],dfprice['PRICE'])
+            p1.line(bdate,bprice)
             #np.array(
             #,dtype=np.datetime64)
             #p1.title = 'Stock Prices for ' + Stock_Symbol
