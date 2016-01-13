@@ -79,9 +79,9 @@ def index_Main():
                 #p1.title = 'Temporal Energy Price Differences for ' + node1n +' and '+node2
                 #p1.xaxis.axis_label = "Date"
                 #p1.yaxis.axis_label = "Price/MWh"
-                script, div = components(p1)
-                #script=bdate
-                #div=bprice
+                #script, div = components(p1)
+                script=bdate
+                div=bprice
                 #return render_template('/Milestone_Main.html',Nodename="",node1n=node1n,node1s=node1s,node1t=node1t)
             #else:
             #    script='empty'
