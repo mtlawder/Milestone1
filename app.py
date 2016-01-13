@@ -75,13 +75,14 @@ def index_Main():
                 dfprice=plotbokehcomp(node1n,node2)
                 bdate=np.array(dfprice['DATE'], dtype=np.datetime64)
                 bprice=np.array(dfprice['DIFF_COST'])
+                p1=figure(x_axis_type='datetime')
                 p1.line(bdate,bprice)
                 #p1.title = 'Temporal Energy Price Differences for ' + node1n +' and '+node2
                 #p1.xaxis.axis_label = "Date"
                 #p1.yaxis.axis_label = "Price/MWh"
-                #script, div = components(p1)
-                script=bdate
-                div=bprice
+                script, div = components(p1)
+                #script=bdate
+                #div=bprice
                 #return render_template('/Milestone_Main.html',Nodename="",node1n=node1n,node1s=node1s,node1t=node1t)
             #else:
             #    script='empty'
