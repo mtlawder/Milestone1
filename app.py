@@ -34,9 +34,9 @@ def quandl_search(query):
 def index_Main():
     if request.method =='GET':
         conn=sqlite3.connect('misodata.db')
-        A=pd.read_sql('SELECT * FROM testcase',conn)
+        A=pd.read_sql('SELECT * FROM LMPdata LIMIT 5',conn)
         conn.close()
-        B=A.loc[0]['VALUE']
+        B=A.loc[0]['NODE']
         return render_template('/Milestone_Main.html', Nodename="",node1n="",node1s="",node1t=B)
     else:
         node=request.form['nodename']
