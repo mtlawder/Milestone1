@@ -36,7 +36,7 @@ def index_Main():
         conn=sqlite3.connect('misodata.db')
         A=pd.read_sql('SELECT * FROM testcase',conn)
         conn.close()
-        B=A.loc[0]['NODE']
+        B=A.loc[0]['VALUE']
         return render_template('/Milestone_Main.html', Nodename="",node1n="",node1s="",node1t=B)
     else:
         node=request.form['nodename']
