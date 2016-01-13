@@ -58,7 +58,7 @@ def index_Main():
             #if nodenum=='1nodes':
             nodenum=request.form['nodenum']
             if nodenum=='1nodes':
-                cout="True"
+                
                 dfprice=plotbokeh(node1n)
                 bdate=np.array(dfprice['DATE'], dtype=np.datetime64)
                 bprice=np.array(dfprice['PRICE'])
@@ -72,15 +72,20 @@ def index_Main():
                 script, div = components(p1)
             else:
                 node2=request.form['nodename2']
-                cout="The other thing is" +node2
-                script="empty"
-                div="still empty"
-                
+                dfprice=plotbokehcomp(node1n,node2)
+                bdate=np.array(dfprice['DATE'], dtype=np.datetime64)
+                bprice=np.array(dfprice['DIFF_COST'])
+                p1.line(bdate,bprice)
+                p1.title = 'Temporal Energy Price Differences for ' + node1n +' and '+node2
+                p1.xaxis.axis_label = "Date"
+                p1.yaxis.axis_label = "Price/MWh"
+                script, div = components(p1)
+                                
                 #return render_template('/Milestone_Main.html',Nodename="",node1n=node1n,node1s=node1s,node1t=node1t)
             #else:
             #    script='empty'
             #    div='empty'
-            return render_template('Onenode_plot.html',node1n=node1n, script=script, div=div,cout=cout)
+            return render_template('Onenode_plot.html',node1n=node1n, script=script, div=div)
 
 #@app.route('/Onenode_plot',methods=['GET','POST'])
 #def Onenode_plot():
