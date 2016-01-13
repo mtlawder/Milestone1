@@ -5,6 +5,7 @@
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    {{ script | safe }}
 </head>
 <title>{{node1n}} Plot</title>
 
@@ -12,9 +13,9 @@
 <div class=page>
     This will eventually plot the data.
     <br>
-    {{out1}},{{out2}}
+    {{out1}}
     
-    
+    {{ div | safe }}
     
     </div>
      <!-- Latest compiled and minified JavaScript -->

@@ -22,7 +22,7 @@ def plotbokeh(nodename):
     conn=sqlite3.connect('misodata.db')
     npriceseries=pd.read_sql('SELECT DATE, PRICE FROM LMPdata WHERE NODE="%s" AND DATE>"2015-09-30"' %(nodename),conn)
     conn.close()
-    return npriceseries.loc[0]['DATE']
+    return npriceseries
     
     
 
@@ -48,20 +48,21 @@ def index_Main():
             node1n=NODE_info.loc[nodefind]['NODE_NAME']
             node1s=NODE_info.loc[nodefind]['STATE']
             node1t=NODE_info.loc[nodefind]['TYPE']
-            #out1=1
-            out1=plotbokeh(node1n)
-            #p1=figure(x_axis_type='datetime')
-            #Price_type=request.form['price_data']
-            #if Price_type=='Cprice':
-            #    p1.line(np.array(dout['Date'],dtype=np.datetime64),dout['Close'])
-            #else:
-            #    p1.line(np.array(dout['Date'],dtype=np.datetime64),dout['Open'])
+            out1=1
+            dfprice=plotbokeh(node1n)
+            p1=figure(x_axis_type='datetime')
+            Price_type=request.form['price_data']
+            
+            p1.line(dfprice['DATE'],dfprice['PRICE'])
+            #np.array(
+            #,dtype=np.datetime64)
             #p1.title = 'Stock Prices for ' + Stock_Symbol
             #p1.xaxis.axis_label = "Date"
             #p1.yaxis.axis_label = "Price"
-            #script, div = components(p1)
+            script, div = components(p1)
             #return render_template('/Milestone_Main.html',Nodename="",node1n=node1n,node1s=node1s,node1t=node1t)
-            return render_template('Onenode_plot.html',node1n=node1n, out1=out1)
+            
+            return render_template('Onenode_plot.html',node1n=node1n, out1=out1, script=script, div=div)
 
 #@app.route('/Onenode_plot',methods=['GET','POST'])
 #def Onenode_plot():
