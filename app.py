@@ -20,7 +20,7 @@ def main():
 
 def plotbokeh(nodename):
     conn=sqlite3.connect('misodata.db')
-    npriceseries=pd.read_sql('SELECT DATE, PRICE FROM LMPdata WHERE NODE="%s" AND DATE>"2015-09-30"' %(nodename),conn)
+    npriceseries=pd.read_sql('SELECT DATE, PRICE FROM LMPdata WHERE NODE="%s" AND DATE>"2015-09-20"' %(nodename),conn)
     conn.close()
     return npriceseries
     
@@ -56,9 +56,9 @@ def index_Main():
             p1.line(bdate,bprice)
             #np.array(
             #,dtype=np.datetime64)
-            #p1.title = 'Stock Prices for ' + Stock_Symbol
-            #p1.xaxis.axis_label = "Date"
-            #p1.yaxis.axis_label = "Price"
+            p1.title = ' Energy Prices for ' + node1n
+            p1.xaxis.axis_label = "Date"
+            p1.yaxis.axis_label = "Price/MWh"
             script, div = components(p1)
             #return render_template('/Milestone_Main.html',Nodename="",node1n=node1n,node1s=node1s,node1t=node1t)
             
