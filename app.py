@@ -22,7 +22,7 @@ def plotbokeh(nodename):
     conn=sqlite3.connect('misodata.db')
     npriceseries=pd.read_sql('SELECT DATE, PRICE FROM LMPdata WHERE NODE="%s" AND DATE>"2015-09-30"' %(nodename),conn)
     conn.close()
-    return npriceseries[0]['DATE']
+    return npriceseries.loc[0]['DATE']
     
     
 
@@ -48,8 +48,8 @@ def index_Main():
             node1n=NODE_info.loc[nodefind]['NODE_NAME']
             node1s=NODE_info.loc[nodefind]['STATE']
             node1t=NODE_info.loc[nodefind]['TYPE']
-            out1=1
-            #out1=plotbokeh(node1n)
+            #out1=1
+            out1=plotbokeh(node1n)
             #p1=figure(x_axis_type='datetime')
             #Price_type=request.form['price_data']
             #if Price_type=='Cprice':
