@@ -73,7 +73,7 @@ def index_Main():
             else:
                 node2=request.form['nodename2']
                 dfprice=plotbokehcomp(node1n,node2)
-                #bdate=np.array(dfprice['DATE'], dtype=np.datetime64)
+                bdate=np.array(dfprice['DATE'], dtype=np.datetime64)
                 #bprice=np.array(dfprice['DIFF_COST'])
                 #p1.line(bdate,bprice)
                 #p1.title = 'Temporal Energy Price Differences for ' + node1n +' and '+node2
