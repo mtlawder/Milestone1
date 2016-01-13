@@ -21,7 +21,8 @@ def main():
 def plotbokeh(nodename):
     conn=sqlite3.connect('misodata.db')
     npriceseries=pd.read_sql('SELECT DATE, PRICE FROM LMPdata WHERE NODE="%s" AND DATE>"2015-09-30"' %(nodename),conn)
-    return npriceseries[0]['DATE'], npriceseries[0]['PRICE']
+    conn.close()
+    return npriceseries[0]['DATE']
     
     
 
@@ -47,7 +48,7 @@ def index_Main():
             node1n=NODE_info.loc[nodefind]['NODE_NAME']
             node1s=NODE_info.loc[nodefind]['STATE']
             node1t=NODE_info.loc[nodefind]['TYPE']
-            out1,out2=plotbokeh(node1n)
+            out1=plotbokeh(node1n)
             #p1=figure(x_axis_type='datetime')
             #Price_type=request.form['price_data']
             #if Price_type=='Cprice':
@@ -59,7 +60,7 @@ def index_Main():
             #p1.yaxis.axis_label = "Price"
             #script, div = components(p1)
             #return render_template('/Milestone_Main.html',Nodename="",node1n=node1n,node1s=node1s,node1t=node1t)
-            return render_template('Onenode_plot.html',node1n=node1n, out1=out1,out2=out2)
+            return render_template('Onenode_plot.html',node1n=node1n, out1=out1)
 
 #@app.route('/Onenode_plot',methods=['GET','POST'])
 #def Onenode_plot():
