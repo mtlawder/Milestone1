@@ -27,7 +27,7 @@ def plotbokeh(nodename):
 def plotbokehcomp(node1, node2):
     conn.sqlite3.connect('misodata.db')
     datestart, datefinish = "2015-09-25","2015-10-01"
-    comppriceseries=pd.read_sql('SELECT DATE, "%s" As Node1, "%s" As Node2, SUM(CASE WHEN NODE = "%s" THEN PRICE ELSE -1.0 * PRICE END) As DIFF_COST FROM LMPdata WHERE (NODE="%s" OR NODE="%s") AND (DATE>"%s" AND DATE<"%s") GROUP BY DATE' %(node1,node2,node1, node1, node2,datestart,datefinish),conn)
+    comppriceseries=pd.read_sql('SELECT DATE, SUM(CASE WHEN NODE = "%s" THEN PRICE ELSE -1.0 * PRICE END) As DIFF_COST FROM LMPdata WHERE (NODE="%s" OR NODE="%s") AND (DATE>"%s" AND DATE<"%s") GROUP BY DATE' %(node1, node1, node2,datestart,datefinish),conn)
     conn.close()
     return comppriceseries
     
@@ -73,14 +73,14 @@ def index_Main():
             else:
                 node2=request.form['nodename2']
                 dfprice=plotbokehcomp(node1n,node2)
-                bdate=np.array(dfprice['DATE'], dtype=np.datetime64)
+                #bdate=np.array(dfprice['DATE'], dtype=np.datetime64)
                 #bprice=np.array(dfprice['DIFF_COST'])
                 #p1.line(bdate,bprice)
                 #p1.title = 'Temporal Energy Price Differences for ' + node1n +' and '+node2
                 #p1.xaxis.axis_label = "Date"
                 #p1.yaxis.axis_label = "Price/MWh"
                 #script, div = components(p1)
-                script=bdate
+                script="bdate"
                 div="empty"
                 #return render_template('/Milestone_Main.html',Nodename="",node1n=node1n,node1s=node1s,node1t=node1t)
             #else:
