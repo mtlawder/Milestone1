@@ -79,7 +79,7 @@ def index_Main():
                 p1.line(bdate,bprice)
                 p1.title = 'Temporal Energy Price Differences for ' + node1n +' and '+node2
                 p1.xaxis.axis_label = "Date"
-                p1.yaxis.axis_label = "Price/MWh (+Node1,-Node2)
+                p1.yaxis.axis_label = "Price/MWh (+Node1,-Node2)"
                 script, div = components(p1)
                 #script=bdate
                 #div=bprice
