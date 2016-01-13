@@ -23,6 +23,8 @@ def plotbokeh(nodename):
     npriceseries=pd.read_sql('SELECT DATE, PRICE FROM LMPdata WHERE NODE="%s" AND DATE>"2015-09-20"' %(nodename),conn)
     conn.close()
     return npriceseries
+
+def plotbokehcomp(node1, node2)
     
     
 
@@ -36,7 +38,7 @@ def index_Main():
         return render_template('/Milestone_Main.html', Nodename="",node1n="",node1s="",node1t="")
     else:
         node=request.form['nodename']
-        checked=request.form['check1']
+        nodenum=request.form['nodenum']
         NODE_info=pd.read_csv('N_info.csv')
         #node1=request.args.get("node1")
         #Hval2=Hval.loc[0]['NODE_NAME']
@@ -49,21 +51,23 @@ def index_Main():
             node1n=NODE_info.loc[nodefind]['NODE_NAME']
             node1s=NODE_info.loc[nodefind]['STATE']
             node1t=NODE_info.loc[nodefind]['TYPE']
-            
-            dfprice=plotbokeh(node1n)
-            bdate=np.array(dfprice['DATE'], dtype=np.datetime64)
-            bprice=np.array(dfprice['PRICE'])
-            p1=figure(x_axis_type='datetime')
-            p1.line(bdate,bprice)
-            #np.array(
-            #,dtype=np.datetime64)
-            p1.title = ' Energy Prices for ' + node1n
-            p1.xaxis.axis_label = "Date"
-            p1.yaxis.axis_label = "Price/MWh"
-            script, div = components(p1)
-            #return render_template('/Milestone_Main.html',Nodename="",node1n=node1n,node1s=node1s,node1t=node1t)
-            
-            return render_template('Onenode_plot.html',node1n=node1n, script=script, div=div,check=checked)
+            if nodenum=='1node':
+                dfprice=plotbokeh(node1n)
+                bdate=np.array(dfprice['DATE'], dtype=np.datetime64)
+                bprice=np.array(dfprice['PRICE'])
+                p1=figure(x_axis_type='datetime')
+                p1.line(bdate,bprice)
+                #np.array(
+                #,dtype=np.datetime64)
+                p1.title = ' Energy Prices for ' + node1n
+                p1.xaxis.axis_label = "Date"
+                p1.yaxis.axis_label = "Price/MWh"
+                script, div = components(p1)
+                #return render_template('/Milestone_Main.html',Nodename="",node1n=node1n,node1s=node1s,node1t=node1t)
+            else:
+                script='empty'
+                div='empty'
+            return render_template('Onenode_plot.html',node1n=node1n, script=script, div=div)
 
 #@app.route('/Onenode_plot',methods=['GET','POST'])
 #def Onenode_plot():

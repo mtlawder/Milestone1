@@ -5,7 +5,7 @@
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-    <script type="text/javascript">
+<!--    <script type="text/javascript">
  function dynInput(cbox) {
   if (cbox.checked) {
     var input = document.createElement("input");
@@ -20,7 +20,7 @@
     document.getElementById(cbox.name).remove();
   }
 }
-</script>
+</script>-->
 </head>
 <title>Milestone1</title>
 <!--<link rel=stylesheet type=text/css href='{{ url_for('static',filename='style_lulu.css')}}'>-->
@@ -36,15 +36,20 @@
       
      <form id='nodename' method='post' action='index_Main' >
       
-    Node name:<br> N1 <input type='text' name='nodename' /> 
+    Nodes<br> Node 1 <input type='text' name='nodename' /> 
+         <br>
+         Node 2 <input type='text' name='nodename2'/>
 <!--         <br>
         <input type='submit' value='Submit nodes' >
--->
+
          
          <p id="insertinputs"></p>
          
          
-        <input type="checkbox" name="check1" onclick="dynInput(this);"  value="False"/> Check box if comparing two nodes  
+        <input type="checkbox" name="check1" onclick="dynInput(this);"  value="False"/>-->
+         <br>
+         <input type="radio" name="nodenum" value="1nodes" checked> Evaluate single node
+         <input type="radio" name="nodenum" value="2nodes"> Compare two nodes  
          <br>
          <input type='submit' value='Submit' >
          <br>
