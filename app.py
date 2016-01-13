@@ -38,7 +38,6 @@ def index_Main():
         return render_template('/Milestone_Main.html', Nodename="",node1n="",node1s="",node1t="")
     else:
         node=request.form['nodename']
-        #nodenum=request.form['nodenum']
         NODE_info=pd.read_csv('N_info.csv')
         #node1=request.args.get("node1")
         #Hval2=Hval.loc[0]['NODE_NAME']
@@ -63,11 +62,12 @@ def index_Main():
             p1.xaxis.axis_label = "Date"
             p1.yaxis.axis_label = "Price/MWh"
             script, div = components(p1)
+            nodenum=request.form['nodenum']
                 #return render_template('/Milestone_Main.html',Nodename="",node1n=node1n,node1s=node1s,node1t=node1t)
             #else:
             #    script='empty'
             #    div='empty'
-            return render_template('Onenode_plot.html',node1n=node1n, script=script, div=div)
+            return render_template('Onenode_plot.html',node1n=node1n, script=script, div=div,cout=nodenum)
 
 #@app.route('/Onenode_plot',methods=['GET','POST'])
 #def Onenode_plot():
