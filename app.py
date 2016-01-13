@@ -48,6 +48,7 @@ def index_Main():
             node1n=NODE_info.loc[nodefind]['NODE_NAME']
             node1s=NODE_info.loc[nodefind]['STATE']
             node1t=NODE_info.loc[nodefind]['TYPE']
+            out1=1
             #out1=plotbokeh(node1n)
             #p1=figure(x_axis_type='datetime')
             #Price_type=request.form['price_data']
