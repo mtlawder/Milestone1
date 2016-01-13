@@ -32,7 +32,7 @@ def quandl_search(query):
 @app.route('/index_Main',methods=['GET','POST'])
 def index_Main():
     if request.method =='GET':
-        return render_template('/Milestone_Main.html', Nodename="")
+        return render_template('/Milestone_Main.html', Nodename="",node1n="",node1s="",node1t="")
     else:
         node=request.form['nodename']
         NODE_info=pd.read_csv('N_info.csv')
@@ -43,25 +43,13 @@ def index_Main():
             return render_template('Milestone_Main.html', Nodename=nodeout)
         else:
             nodefind=NODE_info.loc[NODE_info['NODE_NAME']==node].index.tolist()[0]
-            nodeout=NODE_info.loc[nodefind]['NODE_NAME']+", "+NODE_info.loc[nodefind]['STATE']+", "+NODE_info.loc[nodefind]['TYPE']+", "+str(NODE_info.loc[nodefind]['LAT'])+", "+str(NODE_info.loc[nodefind]['LONG'])
-            return render_template('/Milestone_Main.html',Nodename=nodeout)
+            #nodeout=NODE_info.loc[nodefind]['NODE_NAME']+", "+NODE_info.loc[nodefind]['STATE']+", "+NODE_info.loc[nodefind]['TYPE']+", "+str(NODE_info.loc[nodefind]['LAT'])+", "+str(NODE_info.loc[nodefind]['LONG'])
+            node1n=NODE_info.loc[nodefind]['NODE_NAME']
+            node1s=NODE_info.loc[nodefind]['STATE']
+            node1t=NODE_info.loc[nodefind]['TYPE']
+            return render_template('/Milestone_Main.html',Nodename="",node1n=node1n,node1s=node1s,node1t=node1t)
 
-#        node=request.form['nodename']
-#        NODE_info=pd.DataFrame({'NODE':['AMIL.EDWARDS2','AMMO.LABADIE1'],'STATE':['IL','MO'],'TYPE':['GEN','GEN']})
-#        
-#        else:                  
-#            node=request.form['nodename']
-#            nodefind=NODE_info.loc[NODE_info['NODE']==node]
-#            nodeout=nodefins.loc[0]['NODE']+", "+nodefind.loc[0]['STATE']+", "+nodefind.loc[0]['TYPE']
-        
-#        Stock_Symbol =request.form['stock_symbol']
-#        dout= quandl_search(Stock_Symbol)
-#        
-#        
-#        p1=figure(x_axis_type='datetime')
-#        Price_type=request.form['price_data']
-#
-#        return render_template('/Milestone_Main.html',Nodename=nodeout)
+
     
 
 if __name__ == '__main__':
