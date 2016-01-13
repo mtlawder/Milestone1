@@ -5,6 +5,21 @@
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <script type="text/javascript">
+ function dynInput(cbox) {
+  if (cbox.checked) {
+    var input = document.createElement("input");
+    input.type = "text";
+    var div = document.createElement("div");
+    div.id = cbox.name;
+    div.innerHTML = "N2 ";
+    div.appendChild(input);
+    document.getElementById("insertinputs").appendChild(div);
+  } else {
+    document.getElementById(cbox.name).remove();
+  }
+}
+</script>
 </head>
 <title>Milestone1</title>
 <!--<link rel=stylesheet type=text/css href='{{ url_for('static',filename='style_lulu.css')}}'>-->
@@ -20,14 +35,37 @@
       
      <form id='nodename' method='post' action='index_Main' >
       
-    Node name: <input type='text' name='nodename' /> <input type='submit' value='Add' >
+    Node name:<br> N1 <input type='text' name='nodename' /> 
 <!--         <br>
         <input type='submit' value='Submit nodes' >
 -->
+         
+         <p id="insertinputs"></p>
+         
+         
+         Check box if comparing two nodes  <input type="checkbox" name="check1" onclick="dynInput(this);" />
+         <br>
+         <input type='submit' value='Submit' >
          <br>
          {{Nodename}}
          </form>
-    <div class=container>
+    
+<!--        <script>
+            var node1 = {{node1}};
+        </script>
+         
+         <form id='nodename' method='post' action='index_Main' >
+           <input type='submit' value='Submit nodes' >
+         </form>
+-->
+      
+    
+      <iframe width="100%" height="520" frameborder="0" src="https://mtlawder.cartodb.com/viz/53648bdc-b94e-11e5-bac2-0ef24382571b/embed_map" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+      
+
+    <!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+      <div class=container>
         <table class="table">
             <caption>Chosen Nodes</caption>
             <thead>
@@ -41,22 +79,6 @@
             <th scope="row">3</th> <td>Larry</td> <td>the Bird</td> <td>@twitter</td> </tr> </tbody>-->
         </table>
         </div>
-<!--        <script>
-            var node1 = {{node1}};
-        </script>
-         
-         <form id='nodename' method='post' action='index_Main' >
-           <input type='submit' value='Submit nodes' >
-         </form>
--->
-          {{node1}}
-      
-    
-      <iframe width="100%" height="520" frameborder="0" src="https://mtlawder.cartodb.com/viz/53648bdc-b94e-11e5-bac2-0ef24382571b/embed_map" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-      
-
-    <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     </center>
     </div>
     

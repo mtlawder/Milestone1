@@ -37,18 +37,17 @@ def index_Main():
     else:
         node=request.form['nodename']
         NODE_info=pd.read_csv('N_info.csv')
-        node1=request.args.get("node1")
+        #node1=request.args.get("node1")
         #Hval2=Hval.loc[0]['NODE_NAME']
         #NODE_info=pd.DataFrame({'NODE':['AMIL.EDWARDS2','AMMO.LABADIE1'],'STATE':['IL','MO'],'TYPE':['GEN','GEN']})
         if any(NODE_info.NODE_NAME==node)==False:
             nodeout=node+' is not a Node name'
-            return render_template('Milestone_Main.html', Nodename=nodeout, node1=node1)
+            return render_template('Milestone_Main.html', Nodename=nodeout)
         else:
             nodefind=NODE_info.loc[NODE_info['NODE_NAME']==node].index.tolist()[0]
             node1n=NODE_info.loc[nodefind]['NODE_NAME']
             node1s=NODE_info.loc[nodefind]['STATE']
             node1t=NODE_info.loc[nodefind]['TYPE']
-            out1=1
             dfprice=plotbokeh(node1n)
             bdate=np.array(dfprice['DATE'], dtype=np.datetime64)
             bprice=np.array(dfprice['PRICE'])
@@ -62,7 +61,7 @@ def index_Main():
             script, div = components(p1)
             #return render_template('/Milestone_Main.html',Nodename="",node1n=node1n,node1s=node1s,node1t=node1t)
             
-            return render_template('Onenode_plot.html',node1n=node1n, out1=out1, script=script, div=div)
+            return render_template('Onenode_plot.html',node1n=node1n, script=script, div=div)
 
 #@app.route('/Onenode_plot',methods=['GET','POST'])
 #def Onenode_plot():
