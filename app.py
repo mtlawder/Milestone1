@@ -13,31 +13,26 @@ import numpy as np
 import os
 import sqlite3
 
-api_key = 'cFuUY984Wxy1SpKr25zx'
-
 
 @app.route('/')
 def main():
     return redirect('/index_Main')
 
-def quandl_search(query):
-    url='https://www.quandl.com/api/v3/datasets/WIKI/' + query + '.json?auth_token=cFuUY984Wxy1SpKr25zx'
-    json_obj = urllib2.urlopen(url)
-    dataset=pd.read_json(json_obj)
-    data=np.array(dataset['dataset']['data'])
-    data_col=np.array(dataset['dataset']['column_names'])
-    dout = pd.DataFrame({data_col[0]:data[:,0],data_col[1]:data[:,1],data_col[4]:data[:,4]})
-    return dout
-
+def plotbokeh(nodename):
+    conn=sqlite3.connect('misodata.db')
+    npriceseries=pd.read_sql('SELECT DATE, PRICE FROM LMPdata WHERE NODE="%s" AND DATE>"2015-09-30"' %(nodename),conn)
+    return npriceseries[0]['DATE'], npriceseries[0]['PRICE']
+    
+    
 
 @app.route('/index_Main',methods=['GET','POST'])
 def index_Main():
     if request.method =='GET':
-        conn=sqlite3.connect('misodata.db')
-        A=pd.read_sql('SELECT * FROM LMPdata LIMIT 5',conn)
-        conn.close()
-        B=A.loc[0]['NODE']
-        return render_template('/Milestone_Main.html', Nodename="",node1n="",node1s="",node1t=B)
+        #conn=sqlite3.connect('misodata.db')
+        #A=pd.read_sql('SELECT * FROM LMPdata LIMIT 5',conn)
+        #conn.close()
+        #B=A.loc[0]['NODE']
+        return render_template('/Milestone_Main.html', Nodename="",node1n="",node1s="",node1t="")
     else:
         node=request.form['nodename']
         NODE_info=pd.read_csv('N_info.csv')
@@ -52,8 +47,19 @@ def index_Main():
             node1n=NODE_info.loc[nodefind]['NODE_NAME']
             node1s=NODE_info.loc[nodefind]['STATE']
             node1t=NODE_info.loc[nodefind]['TYPE']
+            out1,out2=plotbokeh(node1n)
+            #p1=figure(x_axis_type='datetime')
+            #Price_type=request.form['price_data']
+            #if Price_type=='Cprice':
+            #    p1.line(np.array(dout['Date'],dtype=np.datetime64),dout['Close'])
+            #else:
+            #    p1.line(np.array(dout['Date'],dtype=np.datetime64),dout['Open'])
+            #p1.title = 'Stock Prices for ' + Stock_Symbol
+            #p1.xaxis.axis_label = "Date"
+            #p1.yaxis.axis_label = "Price"
+            #script, div = components(p1)
             #return render_template('/Milestone_Main.html',Nodename="",node1n=node1n,node1s=node1s,node1t=node1t)
-            return render_template('Onenode_plot.html',node1n=node1n)
+            return render_template('Onenode_plot.html',node1n=node1n, out1=out1,out2=out2)
 
 #@app.route('/Onenode_plot',methods=['GET','POST'])
 #def Onenode_plot():
