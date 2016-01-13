@@ -53,11 +53,11 @@ def index_Main():
             node1s=NODE_info.loc[nodefind]['STATE']
             node1t=NODE_info.loc[nodefind]['TYPE']
             #return render_template('/Milestone_Main.html',Nodename="",node1n=node1n,node1s=node1s,node1t=node1t)
-            return redirect(url_for('Onenode_plot',node1n=node1n))
+            return render_template('Onenode_plot.html',node1n=node1n)
 
-@app.route('/index_Main',methods=['GET','POST'])
-def Onenode_plot(node1n):
-    return render_template('Onenode_plot.html',node1n=node1n)
+#@app.route('/Onenode_plot',methods=['GET','POST'])
+#def Onenode_plot():
+#    return render_template('Onenode_plot.html',node1n=node1n)
 
     
 
