@@ -13,6 +13,8 @@ import numpy as np
 import os
 import sqlite3
 
+NODE_info=pd.read_csv('N_info.csv')
+NODE_front=[NODE_info['NODE_NAME'][x].split(".")[0] for x in range(len(NODE_info))]
 
 @app.route('/')
 def main():
@@ -43,12 +45,15 @@ def index_Main():
         return render_template('/Milestone_Main.html', Nodename="",node1n="",node1s="",node1t="")
     else:
         node=request.form['nodename']
-        NODE_info=pd.read_csv('N_info.csv')
+        node=node.upper()
         #node1=request.args.get("node1")
         #Hval2=Hval.loc[0]['NODE_NAME']
         #NODE_info=pd.DataFrame({'NODE':['AMIL.EDWARDS2','AMMO.LABADIE1'],'STATE':['IL','MO'],'TYPE':['GEN','GEN']})
         if any(NODE_info.NODE_NAME==node)==False:
-            nodeout=node+' is not a Node name'
+            if node.split(".")[0] in NODE_front:
+                nodeout=node.split(".")[1]+ " is not a proper extension for "+node.split(".")[0]+". Please renter name"
+            else:
+                nodeout=node+' is not a Node name'
             return render_template('Milestone_Main.html', Nodename=nodeout)
         else:
             nodefind=NODE_info.loc[NODE_info['NODE_NAME']==node].index.tolist()[0]
