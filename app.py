@@ -52,7 +52,7 @@ def index_Main():
         if any(NODE_info.NODE_NAME==node)==False:
             if node.split(".")[0] in NODE_front:
                 Poss_others=", ".join(NODE_info[NODE_info['NODE_NAME'].str.contains(N.split(".")[0])]['NODE_NAME'].tolist())
-                nodeout=node.split(".")[1]+ " is not a proper extension for "+node.split(".")[0]+". Did you mean " + Poss_others
+                nodeout=node.split(".")[1]+ " is not a proper extension for "+node.split(".")[0]+". Did you mean "
             else:
                 nodeout=node+' is not a Node name'
             return render_template('Milestone_Main.html', Nodename=nodeout)
