@@ -77,7 +77,7 @@ def index_Main():
                 bprice=np.array(dfprice['DIFF_COST'])
                 p1=figure(x_axis_type='datetime')
                 p1.line(bdate,bprice)
-                p1.title = 'Temporal Energy Price Differences'
+                p1.title = "Temporal Energy Price Differences"
                 p1.xaxis.axis_label = "Date"
                 p1.yaxis.axis_label = "Price/MWh (+Node1,-Node2)"
                 script, div = components(p1)
