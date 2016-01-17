@@ -77,6 +77,27 @@
     var vizjson = 'https://mtlawder.cartodb.com/api/v2/viz/53648bdc-b94e-11e5-bac2-0ef24382571b/viz.json';
     cartodb.createVis('map', vizjson);
     }
+    cartodb.createLayer('map', vizjson)
+       .addTo('map')
+       .on('done', function(layer) {
+        
+  // change the query for the first layer
+  var subLayerOptions = {
+      sql: "SELECT * FROM example_cartodbjs_1 where pop_other::float > 1000000",
+      cartocss: "#example_cartodbjs_1{marker-fill: #109DCD; marker-width: 5; marker-line-color: white; marker-line-width: 0;}"
+        }
+
+  var sublayer = layer.getSubLayer(0);
+  sublayer.set(subLayerOptions);
+
+  sublayer.infowindow.set('template', $('#infowindow_template').html());
+        
+  sublayer.on('featureClick', function(e, latlng, pos, data) {
+          alert("Hey! You clicked " + data.cartodb_id);
+    });
+  }).on('error', function() {
+        //log the error
+});
     </script>
 
   </body>
