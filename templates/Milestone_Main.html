@@ -43,6 +43,20 @@
          <input type="radio" name="nodenum" value="1nodes" checked> Evaluate single node
          <input type="radio" name="nodenum" value="2nodes"> Compare two nodes  
          <br>
+         <select>
+          <option value="volvo">January</option>
+          <option value="saab">February</option>
+          <option value="opel">March</option>
+          <option value="audi">April</option>
+          <option value="volvo">May</option>
+          <option value="saab">June</option>
+          <option value="opel">July</option>
+          <option value="audi">August</option>
+          <option value="volvo">September</option>
+          <option value="saab">October</option>
+          <option value="opel">November</option>
+          <option value="audi">December</option>
+        </select>
          <input type='submit' value='Submit' >
          <br>
          {{Nodename}}
@@ -72,7 +86,7 @@
     <!-- Drop your code between the script tags below! -->
     <script>
     window.onload = function(){
-    var option ={center:[42.3,-91],
+    var option ={center:[43.5,-91],
                 zoom: 5};
     var vizjson = 'https://mtlawder.cartodb.com/api/v2/viz/53648bdc-b94e-11e5-bac2-0ef24382571b/viz.json';
     cartodb.createVis('map', vizjson);
