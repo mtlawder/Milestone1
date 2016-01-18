@@ -45,6 +45,8 @@ def index_Main():
         return render_template('/Milestone_Main.html', Nodename="",node1n="",node1s="",node1t="")
     else:
         node=request.form['nodename']
+        start_date=request.form['start_date']
+        end_date=request.form['end_date']
         node=node.upper()
         #node1=request.args.get("node1")
         #Hval2=Hval.loc[0]['NODE_NAME']
@@ -56,6 +58,8 @@ def index_Main():
             else:
                 nodeout=node+' is not a Node name'
             return render_template('Milestone_Main.html', Nodename=nodeout)
+        elif end_date<start_date:
+            nodeout="Problem with Dates. Choose new dates.
         else:
             nodefind=NODE_info.loc[NODE_info['NODE_NAME']==node].index.tolist()[0]
             node1n=NODE_info.loc[nodefind]['NODE_NAME']
