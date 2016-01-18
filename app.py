@@ -83,27 +83,38 @@ def index_Main():
                 p1.xaxis.axis_label = "Date"
                 p1.yaxis.axis_label = "Price/MWh"
                 script, div = components(p1)
+                return render_template('Onenode_plot.html',node1n=node1n, script=script, div=div,cout=cout)
             else:
                 node2=request.form['nodename2']
-                dfprice=plotbokehcomp(node1n,node2)
-                bdate=np.array(dfprice['DATE'], dtype=np.datetime64)
-                bprice=np.array(dfprice['DIFF_COST'])
-                p1=figure(x_axis_type='datetime')
-                p1.line(bdate,bprice)
-                p1.title = "Temporal Energy Price Differences"
-                p1.xaxis.axis_label = "Date"
-                p1.yaxis.axis_label = "Price/MWh (+Node1,-Node2)"
-                script, div = components(p1)
-                Total_Charge=dfprice['DIFF_COST'].sum(axis=0)
-                cout= "The total charge was $"+str(Total_Charge)+" per MWh for transmitting energy from "+node1n+" to "+node2+"."
-                #cout2= "This charge is for the time range "+start_date+" to "+end_date+"."
-                #script=bdate
-                #div=bprice
-                #return render_template('/Milestone_Main.html',Nodename="",node1n=node1n,node1s=node1s,node1t=node1t)
-            #else:
-            #    script='empty'
-            #    div='empty'
-            return render_template('Onenode_plot.html',node1n=node1n, script=script, div=div,cout=cout)
+                node2=node2.upper()
+                if any(NODE_info.NODE_NAME==node2)==False:
+                    if node2.split(".")[0] in NODE_front:
+                        Poss_others=", ".join(NODE_info[NODE_info['NODE_NAME'].str.contains(node2.split(".")[0])]['NODE_NAME'].tolist())
+                        nodeout=node2.split(".")[1]+ " is not a proper extension for "+node2.split(".")[0]+". Did you mean "+Poss_others
+                    else:
+                        nodeout=node2+' is not a Node name'
+                    return render_template('Milestone_Main.html', Nodename=nodeout)
+                else:
+                    
+                    dfprice=plotbokehcomp(node1n,node2)
+                    bdate=np.array(dfprice['DATE'], dtype=np.datetime64)
+                    bprice=np.array(dfprice['DIFF_COST'])
+                    p1=figure(x_axis_type='datetime')
+                    p1.line(bdate,bprice)
+                    p1.title = "Temporal Energy Price Differences"
+                    p1.xaxis.axis_label = "Date"
+                    p1.yaxis.axis_label = "Price/MWh (+Node1,-Node2)"
+                    script, div = components(p1)
+                    Total_Charge=dfprice['DIFF_COST'].sum(axis=0)
+                    cout= "The total charge was $"+str(Total_Charge)+" per MWh for transmitting energy from "+node1n+" to "+node2+"."
+                    #cout2= "This charge is for the time range "+start_date+" to "+end_date+"."
+                    #script=bdate
+                    #div=bprice
+                    #return render_template('/Milestone_Main.html',Nodename="",node1n=node1n,node1s=node1s,node1t=node1t)
+                #else:
+                #    script='empty'
+                #    div='empty'
+                    return render_template('Onenode_plot.html',node1n=node1n, script=script, div=div,cout=cout)
 
 #@app.route('/Onenode_plot',methods=['GET','POST'])
 #def Onenode_plot():
