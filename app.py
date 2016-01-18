@@ -94,13 +94,16 @@ def index_Main():
                 p1.xaxis.axis_label = "Date"
                 p1.yaxis.axis_label = "Price/MWh (+Node1,-Node2)"
                 script, div = components(p1)
+                Total_Charge=dfprice['DIFF_COST'].sum(axis=0)
+                cout= "The total charge was $"+str(Total_Charge)+" per MWh for transmitting energy from "+node1n+" to "+node2+"."
+                #cout2= "This charge is for the time range "+start_date+" to "+end_date+"."
                 #script=bdate
                 #div=bprice
                 #return render_template('/Milestone_Main.html',Nodename="",node1n=node1n,node1s=node1s,node1t=node1t)
             #else:
             #    script='empty'
             #    div='empty'
-            return render_template('Onenode_plot.html',node1n=node1n, script=script, div=div)
+            return render_template('Onenode_plot.html',node1n=node1n, script=script, div=div,cout=cout)
 
 #@app.route('/Onenode_plot',methods=['GET','POST'])
 #def Onenode_plot():
