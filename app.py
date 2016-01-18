@@ -47,8 +47,8 @@ def index_Main():
     else:
         node=request.form['nodename']
         start_date=datetime.datetime.strptime(request.form['start_date'], '%Y-%m-%d').date()
-        #start_date=request.form['start_date']
-        #end_date=request.form['end_date']
+        end_date=datetime.datetime.strptime(request.form['end_date'], '%Y-%m-%d').date()
+        
         node=node.upper()
         #node1=request.args.get("node1")
         #Hval2=Hval.loc[0]['NODE_NAME']
@@ -56,13 +56,13 @@ def index_Main():
         if any(NODE_info.NODE_NAME==node)==False:
             if node.split(".")[0] in NODE_front:
                 Poss_others=", ".join(NODE_info[NODE_info['NODE_NAME'].str.contains(node.split(".")[0])]['NODE_NAME'].tolist())
-            #    nodeout=node.split(".")[1]+ " is not a proper extension for "+node.split(".")[0]+". Did you mean "+Poss_others
-                nodeout=start_date
+                nodeout=node.split(".")[1]+ " is not a proper extension for "+node.split(".")[0]+". Did you mean "+Poss_others
+            
             else:
                 nodeout=node+' is not a Node name'
             return render_template('Milestone_Main.html', Nodename=nodeout)
-        #elif end_date<start_date:
-        #    nodeout="Problem with Dates. Choose new dates."
+        elif end_date<start_date:
+            nodeout="Problem with Dates. Choose new dates."
         else:
             nodefind=NODE_info.loc[NODE_info['NODE_NAME']==node].index.tolist()[0]
             node1n=NODE_info.loc[nodefind]['NODE_NAME']
