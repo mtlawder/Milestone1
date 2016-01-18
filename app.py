@@ -46,7 +46,7 @@ def index_Main():
         return render_template('/Milestone_Main.html', Nodename="",node1n="",node1s="",node1t="")
     else:
         node=request.form['nodename']
-        start_date=datetime.datetime.strptime(request.form['start_date'], '%d-%m-%Y').date()
+        start_date=datetime.datetime.strptime(request.form['start_date'], '%d/%m/%Y').date()
         #start_date=request.form['start_date']
         #end_date=request.form['end_date']
         node=node.upper()
