@@ -25,11 +25,73 @@
     <h4>
       Choose a node point
     </h4>
+      </center>
+     
+      <form class="form-horizontal" id='nodename' method='post' action='index_Main'>
+  <div class="form-group">
+    <label for="nodename" class="col-sm-2 control-label">Node 1</label>
+    <div class="col-sm-2">
+      <input type="node1" class="form-control" name="nodename" placeholder="AMMO.UE.AZ">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="nodename2" class="col-sm-2 control-label">Node 2</label>
+    <div class="col-sm-2">
+      <input type="node2" class="form-control" name="nodename2" placeholder="">
+    </div>
+  </div>
+
+ <div class="form-group">
+    <label for="nodenum" class="col-sm-2 control-label">Single Node</label>
+    <div class="col-sm-2">
+      <input type="radio" class="radio" name="nodenum" value="1nodes" checked>
+    </div>
+  </div>
+   <div class="form-group">
+    <label for="nodenum" class="col-sm-2 control-label">Two Node</label>
+    <div class="col-sm-2">
+      <input type="radio" class="radio" name="nodenum" value="2nodes">
+    </div>
+  </div>   
+
+          <div class="form-group">
+              <label for="start_date" class="col-sm-2 control-label">Start Date</label>
+              <div class="col-sm-2">
+              <input type="date" class="form-control" name="start_date" min=2011-07-31 max=2015-09-30 value=2015-09-01>
+              </div></div>
+          <div class="form-group">
+               <label for="end_date" class="col-sm-2 control-label">End Date</label>
+              <div class="col-sm-2">
+ <input type="date" class="form-control" name="end_date" min=2011-07-31 max=2015-09-30 value=2015-09-30>
+              </div></div>
+      <!-- <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Remember me
+        </label>
+      </div>
+    </div>
+  </div>
+-->
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary btn-lg">Submit Nodes</button>
+    </div>
+  </div>
+</form>
+     
       
-	       <form id='nodename' method='post' action='index_Main' >
-      
-    Nodes<br> Node 1 <input type='text' name='nodename' /> 
-         <br>
+<!--  
+       <form id='nodename' method='post' action='index_Main' >
+      <div class="form-control">
+    <!--Nodes<br> Node 1 <input type='text' name='nodename' />
+              <label for="exampleInputEmail1">Email address</label>
+    <input type="text" class="form-control" name="nodename" placeholder="Email">
+               </div>
+               <br>
+               <br>
+          <br>
          Node 2 <input type='text' name='nodename2'/>
 <!--         <br>
         <input type='submit' value='Submit nodes' >
@@ -38,7 +100,7 @@
          <p id="insertinputs"></p>
          
          
-        <input type="checkbox" name="check1" onclick="dynInput(this);"  value="False"/>-->
+        <input type="checkbox" name="check1" onclick="dynInput(this);"  value="False"/>
          <br>
          <input type="radio" name="nodenum" value="1nodes" checked> Evaluate single node
          <input type="radio" name="nodenum" value="2nodes"> Compare two nodes  
@@ -74,13 +136,11 @@
           <option value="saab">October</option>
           <option value="opel">November</option>
           <option value="audi">December</option>
-        </select>    --> -->  
+        </select>    
          <input type='submit' value='Submit' >
          <br>
          {{Nodename}}
-         </form>
-
-</center>
+         </form>-->
   
     <div id="map" style="border: 10px solid; margin:5px"></div>
 <p id="demo"></p>
