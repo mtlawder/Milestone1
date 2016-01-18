@@ -12,6 +12,7 @@ import pandas as pd
 import numpy as np
 import os
 import sqlite3
+import datetime
 
 NODE_info=pd.read_csv('N_info.csv')
 NODE_front=[NODE_info['NODE_NAME'][x].split(".")[0] for x in range(len(NODE_info))]
@@ -45,8 +46,9 @@ def index_Main():
         return render_template('/Milestone_Main.html', Nodename="",node1n="",node1s="",node1t="")
     else:
         node=request.form['nodename']
-        start_date=request.form['start_date']
-        end_date=request.form['end_date']
+        start_date=datetime.datetime.strptime(request.form['start_date'], '%d-%m-%Y').date()
+        #start_date=request.form['start_date']
+        #end_date=request.form['end_date']
         node=node.upper()
         #node1=request.args.get("node1")
         #Hval2=Hval.loc[0]['NODE_NAME']
