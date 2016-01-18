@@ -61,8 +61,8 @@ def index_Main():
             else:
                 nodeout=node+' is not a Node name'
             return render_template('Milestone_Main.html', Nodename=nodeout)
-        elif end_date < start_date==True:
-            nodeout="Problem with Dates. Choose new dates."
+        #elif end_date < start_date==True:
+        #    nodeout="Problem with Dates. Choose new dates."
         else:
             nodefind=NODE_info.loc[NODE_info['NODE_NAME']==node].index.tolist()[0]
             node1n=NODE_info.loc[nodefind]['NODE_NAME']
