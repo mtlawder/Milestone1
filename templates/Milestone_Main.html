@@ -18,7 +18,19 @@
     </style>
 
     <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
-  </head>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+      <link rel="stylesheet" href="/resources/demos/style.css">
+       <script>
+  $(function() {
+    var availableTags = {{nodes}};
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+  });
+  </script>
+    </head>
   <body>
   <center>
   <h1>MISO Energy Prices</h1>
@@ -36,9 +48,14 @@
   <div class="form-group">
     <label for="nodename" class="col-sm-4 control-label">Node 1</label>
     <div class="col-sm-8">
-      <input type="node1" class="form-control" name="nodename" placeholder="AMMO.UE.AZ">
-    </div>
+        <div class="ui-widget">
+      <input type="text" id="tags" class="form-control" name="nodename" placeholder="AMMO.UE.AZ">
+        </div>
+        </div>
   </div>
+          
+
+ 
   <div class="form-group">
     <label for="nodename2" class="col-sm-4 control-label">Node 2</label>
     <div class="col-sm-8">

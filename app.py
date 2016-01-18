@@ -43,7 +43,7 @@ def index_Main():
         #A=pd.read_sql('SELECT * FROM LMPdata LIMIT 5',conn)
         #conn.close()
         #B=A.loc[0]['NODE']
-        return render_template('/Milestone_Main.html', Nodename="",node1n="",node1s="",node1t="")
+        return render_template('/Milestone_Main.html', Nodename="",node1n="",node1s="",node1t="",nodes=['AMMO.UE.AZ','AMIL.EDWARDS2'])
     else:
         node=request.form['nodename']
         start_date=datetime.datetime.strptime(request.form['start_date'], '%Y-%m-%d').date()
