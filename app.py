@@ -27,9 +27,9 @@ def plotbokeh(nodename,start_date,end_date):
     conn.close()
     return npriceseries
 
-def plotbokehcomp(node1, node2):
+def plotbokehcomp(node1, node2, start_date,end_date):
     conn=sqlite3.connect('misodata.db')
-    datestart, datefinish = "2015-09-25","2015-10-01"
+    datestart, datefinish = start_date, end_date
     comppriceseries=pd.read_sql('SELECT DATE, SUM(CASE WHEN NODE = "%s" THEN PRICE ELSE -1.0 * PRICE END) As DIFF_COST FROM LMPdata WHERE (NODE="%s" OR NODE="%s") AND (DATE>"%s" AND DATE<"%s") GROUP BY DATE' %(node1, node1, node2,datestart,datefinish),conn)
     conn.close()
     return comppriceseries
@@ -96,7 +96,7 @@ def index_Main():
                     return render_template('Milestone_Main.html', Nodename=nodeout)
                 else:
                     
-                    dfprice=plotbokehcomp(node1n,node2)
+                    dfprice=plotbokehcomp(node1n,node2, start_date, end_date)
                     bdate=np.array(dfprice['DATE'], dtype=np.datetime64)
                     bprice=np.array(dfprice['DIFF_COST'])
                     p1=figure(x_axis_type='datetime')
