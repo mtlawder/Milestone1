@@ -1,11 +1,9 @@
-
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>MISO Prices</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-	
     
     <!-- Map takes up full browser window -->
     <style>
@@ -13,112 +11,111 @@
         height: 500px;
         padding: 10;
         margin: 10;
-
       }
     </style>
 
     <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-      <link rel="stylesheet" href="/resources/demos/style.css">
-       <script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    
+    <script>
   $(function() {
     var availableTags = ['BREC.WILSON1','SIPC.5MRN_PN14','BREC.HMP1','AMMO.WVPA','BREC.COLE1','SIGE.10ABBGN1','SIGE.10CULGN3','AMIL.BALDWI51','AMMO.RUSHIS1','AMIL.PSGC1.AMP','AMMO.MERAMEC3','CIN.GIBSON.1','IPL.16PETEE1','AMMO.LABADIE1','AMMO.UE','AMMO.CALLAWAY1','AMIL.WOODRW85','AMMO.SIOUX1','AMMO.UE.AZ','AMIL.COFFEEN1','AMIL.NEWTON21','HE.MEROM1','HE.WORTH2','CWLD.CWLD','AMIL.PTWF','INDIANA.HUB','CIN.CC.SUGRCK','AMIL.ALSEYCTG1','CIN.WABRIVR.6','IPL.IPL','IPL.16STOU7O7','AMIL.PPI','CWLP.DALLMA84','CIN.CAYUGA.1','CIN.PSI','ILLINOIS.HUB','AMIL.CLINTO51','AMIL.HAVANA86','AMIL.DUCKCRK1','CIN.DEI.AZ','AMIL.EDWARDS2','TVA.WHITEOAK','ALTW.BRLGTN5','AMIL.STWF','ALTW.OTTUMW1','MEC.OTTUMWA1','MEC.WSEC3','NIPS.SCHAHP14','AMIL.HENNEPN82','NIPS.NIPS','MPW.UNIT_9','NIPS.BAILLP8','NIPS.CC.WHITN','NIPS.MICHCP12','DECO.MONROE1','NPPD','DECO.FERMI2','DECO.TRNCNL9','ALTW.DAEC','DECO.CC.DIG2','CONS.CC.PLYM','CONS.PALISA2A1','MEC.NEALN_2','ALTW.ALTW','WEC.PLPRG41','MEC.PPWIND','MICHIGAN.HUB','DECO.AZ','CONS.CC.ZEELA2','DECO.STCLAIR6','WEC.OKCGC6','CONS.CAMPBELL1','DECO.NEC','ALTW.LANSIN4','WPS.COLUMBIA1','CONS.KARN1','CONS.MCV.MCV','DPC.GENOA3','CONS.AZ','CONS.WPSC_2.AZ','ALTE.EDGG4G4','WEC.CC.PORTW1','DPC.DPC','WAUE','CONS.CETR','WEC.S','CONS.CC.MICHP','SMP.OWEF','DPC.JPM','WEC.PTBHGB1','CONS.FILERCITY','NSP.PRISL1','NSP.AZ','WPS.WESTON3','NSP.CC.HIBRDG1','NSP.KING1','WPS.WPSM','OTP.BIGSTON1','MINN.HUB','NSP.NSP','NSP.SHERCO2','UPPC.ESCCT','MDU.TATANKA1','UPPC.WARDEN','MP.MP_BOS4','GRE.STANTO1','OTP.MPC','MDU.LEWIS1','OTP.MPC.LANGDN',];
     $( "#tags" ).autocomplete({
+        minLength: 0,
       source: availableTags
-    });
+    }).focus(function() {
+    $(this).autocomplete("search", $(this).val());
+});
+
+
     $( "#tags2" ).autocomplete({
+        minLength: 0,
       source: availableTags
+     }).focus(function() {
+    $(this).autocomplete("search", $(this).val());
     });
   });
   </script>
-    </head>
-  <body>
-  <center>
-  <h1>MISO Energy Prices</h1>
-    <h4>
-      Choose a node point
-    </h4>
-      </center>
-     <div class="container">
+    
+</head>
 
-         <div class="col-sm-4">
-         <div class="col-sm-12">
-             <br><br><br><br><br>
-         </div>
-      <form class="form-horizontal" id='nodename' method='post' action='index_Main'>
-  <div class="form-group">
-    <label for="nodename" class="col-sm-4 control-label">Node 1</label>
-    <div class="col-sm-8">
-        <div class="ui-widget">
-      <input type="text" id="tags" class="form-control" name="nodename" placeholder="First Node">
+<body>
+    <center>
+    <h1>MISO Energy Prices</h1>
+    <h4>Choose a node point</h4>
+    </center>
+    
+    <div class="container">
+        
+<!--THis is the Entry Form-->        
+        <div class="col-sm-4">
+            <div class="col-sm-12">
+                <br><br><br><br><br>
+            </div>
+            <form class="form-horizontal" id='nodename' method='post' action='index_Main'>
+                <div class="form-group">
+                    <label for="nodename" class="col-sm-4 control-label">Node 1</label>
+                    <div class="col-sm-8">
+                    <div class="ui-widget">
+                        <input type="text" id="tags" class="form-control" name="nodename" placeholder="First Node">
+                    </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="nodename2" class="col-sm-4 control-label">Node 2</label>
+                    <div class="col-sm-8">
+                    <div class="ui-widget">
+                        <input type="text" id="tags2" class="form-control" name="nodename2" placeholder="Second Node">
+                    </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="nodenum" class="col-sm-4 control-label">Single Node</label>
+                    <div class="col-sm-2">
+                        <input type="radio" class="radio" name="nodenum" value="1nodes" checked>
+                    </div>
+                    <label for="nodenum" class="col-sm-4 control-label">Two Node</label>
+                    <div class="col-sm-2">
+                        <input type="radio" class="radio" name="nodenum" value="2nodes">
+                    </div>
+                </div>   
+                <div class="form-group">
+                    <label for="start_date" class="col-sm-4 control-label">Start Date</label>
+                    <div class="col-sm-8">
+                        <input type="date" class="form-control" name="start_date" min=2011-07-31 max=2015-09-30 value=2015-09-01>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="end_date" class="col-sm-4 control-label">End Date</label>
+                    <div class="col-sm-8">
+                        <input type="date" class="form-control" name="end_date" min=2011-07-31 max=2015-09-30 value=2015-09-30>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <button type="submit" class="btn btn-primary btn-lg">  Submit Nodes  </button>
+                    </div>
+                </div>
+            </form>
+            <center>
+                {{Nodename}}
+            </center>
         </div>
-        </div>
-  </div>
-  <div class="form-group">
-    <label for="nodename2" class="col-sm-4 control-label">Node 2</label>
-    <div class="col-sm-8">
-        <div class="ui-widget">
-      <input type="text" id="tags2" class="form-control" name="nodename2" placeholder="Second Node">
-        </div>
-        </div>
-  </div>
-
- <div class="form-group">
-    <label for="nodenum" class="col-sm-4 control-label">Single Node</label>
-    <div class="col-sm-2">
-      <input type="radio" class="radio" name="nodenum" value="1nodes" checked>
-    </div>
-
-    <label for="nodenum" class="col-sm-4 control-label">Two Node</label>
-    <div class="col-sm-2">
-      <input type="radio" class="radio" name="nodenum" value="2nodes">
-    </div>
-  </div>   
-
-          <div class="form-group">
-              <label for="start_date" class="col-sm-4 control-label">Start Date</label>
-              <div class="col-sm-8">
-              <input type="date" class="form-control" name="start_date" min=2011-07-31 max=2015-09-30 value=2015-09-01>
-              </div></div>
-          <div class="form-group">
-               <label for="end_date" class="col-sm-4 control-label">End Date</label>
-              <div class="col-sm-8">
- <input type="date" class="form-control" name="end_date" min=2011-07-31 max=2015-09-30 value=2015-09-30>
-              </div></div>
-
-  <div class="form-group">
-    <div class="col-sm-offset-4 col-sm-8">
-      <button type="submit" class="btn btn-primary btn-lg">  Submit Nodes  </button>
-    </div>
-  </div>
-</form>
-     {{Nodename}}
-         </div>
       
-  <div class="col-sm-8">
-    <div id="map" style="border: 10px solid; margin:5px"></div>
-      </div>
-      </div>
-<p id="demo"></p>
-    <!-- include cartodb.js library -->
-    <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-      <div class=container>
-        <table class="table">
-            <caption>Chosen Nodes</caption>
-            <thead>
-             <tr>
-            <th></th> <th>Node Name</th> <th>State</th> <th>Type</th> </tr> </thead> <tbody>
-            <tr>
-            <th scope="row">1</th> <td>{{node1n}}</td> <td>{{node1s}}</td> <td>{{node1t}}</td> </tr>
-<!--            <tr>
-            <th scope="row">2</th> <td>Jacob</td> <td>Thornton</td> <td>@fat</td> </tr>
-            <tr>
-            <th scope="row">3</th> <td>Larry</td> <td>the Bird</td> <td>@twitter</td> </tr> </tbody>-->
-        </table>
+<!-- This is the Map-->        
+        <div class="col-sm-8">
+            <div id="map" style="border: 10px solid; margin:5px"></div>
         </div>
+    </div>
+    <p id="demo"></p>
+<!-- include cartodb.js library -->
+    <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+      
+
     <!-- Drop your code between the script tags below! -->
     <script>
     window.onload = function(){
@@ -131,3 +128,19 @@
 
   </body>
 </html>
+<!-- Delete Table
+    <div class=container>
+        <table class="table">
+            <caption>Chosen Nodes</caption>
+            <thead>
+             <tr>
+            <th></th> <th>Node Name</th> <th>State</th> <th>Type</th> </tr> </thead> <tbody>
+            <tr>
+            <th scope="row">1</th> <td>{{node1n}}</td> <td>{{node1s}}</td> <td>{{node1t}}</td> </tr>
+            <tr>
+            <th scope="row">2</th> <td>Jacob</td> <td>Thornton</td> <td>@fat</td> </tr>
+            <tr>
+            <th scope="row">3</th> <td>Larry</td> <td>the Bird</td> <td>@twitter</td> </tr> </tbody>
+        </table>
+        </div>
+-->
