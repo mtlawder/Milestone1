@@ -83,6 +83,7 @@ def index_Main():
                 p1.xaxis.axis_label = "Date"
                 p1.yaxis.axis_label = "Price/MWh"
                 script, div = components(p1)
+                cout="Can add some text in here"
                 return render_template('Onenode_plot.html',node1n=node1n, script=script, div=div,cout=cout)
             else:
                 node2=request.form['nodename2']
