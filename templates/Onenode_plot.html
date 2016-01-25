@@ -15,6 +15,11 @@
      div.tophead {background-color: #428bca;
         color: White}
     </style>
+    <script type="text/javascript">
+    $('.button1').click(function () {
+        $.ajax({type: 'GET', url: 'http://misodata.herokuapp.com/index_Main#Energy_Tool'});
+    });
+</script>
 </head>
 
 <title>{{node1n}} Plot</title>
@@ -46,7 +51,7 @@
 
         <li><a href="#">Main Project </a></li>
           <li><a href="#"> Build a new Wind Farm </a></li>
-          <li><a href="http://misodata.herokuapp.com/index_Main#Energy_Tool"> Analyze Energy Prices </a></li>
+          <li><div class="button1"> Analyze Energy Prices </div></li>
           <li><a href="http://misodata.herokuapp.com/index_Main#Energy_Tool" method="get"> Determine Transmission Cost </a></li>
           <li><a href="#"> Learn more about MISO </a></li>
           <li><a href="http://misodata.herokuapp.com/index_Main#Author"> About Author </a></li>
