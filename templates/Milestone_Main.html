@@ -13,9 +13,11 @@
         margin: 10;
 
       }
+        div.tophead {background-color: #428bca;
+        color: White}
     </style>
     <style>
-        body {background-color: rgba(204,204,204,0.8);
+        body {background-color: #eee<!--rgba(204,204,204,0.8)-->;
             <!--background:url('Background.jpg');
         background-size:cover;-->
         }
@@ -50,11 +52,83 @@
 
 <body>
     <center>
-    <h1>MISO Energy Prices</h1>
-    <h4>Choose a node point</h4>
+    <div class="tophead">
+        <br>
+    <h1> A Search for Power</h1>
+    <h4>An analysis of Energy Prices in the Midwest</h4>
+        <h4>Matthew T. Lawder</h4>
+        <h5>matthew.lawder@mg.thedataincubator.com</h5>
+        <br>
+        </div>
     </center>
-    
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+          <li><a href="#"> Home </a></li>
+
+        <li><a href="#">Main Project </a></li>
+          <li><a href="#"> Build a new Wind Farm </a></li>
+          <li><a href="#Energy_Tool"> Analyze Energy Prices </a></li>
+          <li><a href="#Energy_Tool"> Determine Transmission Cost </a></li>
+          <li><a href="#"> Learn more about MISO </a></li>
+          <li><a href="#Author"> About Author </a></li>
+      </ul>
+      
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
     <div class="container">
+        <div class="col-sm-6">
+            <h3>
+                <center>
+                We study energy prices to make better decisions about generation
+                </center>
+            </h3>
+            <p>
+                While your utility probably bills you at a flat rate for every unit (kWh) of energy you consume, the price of energy is not constant. Many different utilities and third-party operators generate energy and they buy sell energy in real-time. When local demand is for energy is high (eg. during a hot summer day), prices will be driven up in order to secure more generation. When there is lots of generation, but low demand (eg. on a blustry day near an isolated wind farm) prices will be driven down. All of these prices are monitored and regulated by the Midcontinent Independent System Operator Regional Transmission Organization or MISO for short. They monitor the price of energy across a large swath of middle America. By studying their historical database on prices from 10's of thousands of nodes, we make actionable decisions to:</p>
+        </div>
+        <div class="center-block">
+        <div class="col-sm-6">
+            <br><br>
+            <img src="Background.jpg"  class="img-responsive" alt="Responsive image">
+            </div>
+            </div>
+    </div>
+    <div class="container">
+        <div class="col-sm-offset-1 col-sm-10">
+        <ul><h3>
+            <li><a href=#Energy_Tool>Determine where new wind farms will be most profitable</a></li>
+            <li><a href=#Energy_Tool>Analyze a individual generator's historical prices</a></li>
+            <li><a href=#Energy_Tool>Produce fixed for floating calculations for new generation</a></li>
+            <li><a href=#Energy_Tool>Calculate transmission restrictions within the grid</a></li>
+            </h3>
+        </ul>
+        </div>
+    </div>
+    <br>
+                    <div class="tophead">
+                    <br>
+                    <center>
+                    <h2 id="Energy_Tool">Choose a node to analyze the historical energy prices</h2>  
+          <br>
+                        </center>
+        </div>
+    <div class="container">
+        
+            
+
         
 <!--THis is the Entry Form-->        
         <div class="col-sm-4">
@@ -107,9 +181,9 @@
                 </div>
             </form>
             <center>
-
+<p>
                 {{Nodename}}
-
+                </p>
             </center>
         </div>
       
@@ -133,7 +207,26 @@
     cartodb.createVis('map', vizjson);
     }
     </script>
-
+    <div class="tophead">
+                    <br>
+                    <center>
+                    <h2 id="Author">About the Author: Matthew T. Lawder</h2>  
+          <br>
+                        </center>
+        </div>
+    <div class="container">
+        <div class="col-sm-3">
+           <img src="MTL_headshot.jpg"  class="img-responsive" alt="Responsive image"> 
+        </div>
+        <div class="col-sm-9">
+            <br><br>
+            <br>
+            <p>
+                I recently graduated from Washington University in St. Louis with a PhD in Energy, Environmental, and Chemical Engineering. During my tenure in grad school, I researched computational Li-ion battery modeling and conducted long-term battery aging experiments. Conducting long-term studies, created the oppurtunity to develop skills for dealing with and analyzing large data sets. I am currently a Fellow at The Data Incubator in New York City where I am continuing to develop my abilities for data science.</p>
+            <p>
+                Outside of work, I enjoy running. In 2015, I completed both the Boston and New York City Marathons. In Boston I finished 46th overall (22nd American) in a time of 2:26:21. If you would like to know more about me or my qualifications please contact me at matthew.lawder@mg.thedataincubator.com.</p>
+        </div>
+    </div>
   </body>
 </html>
 <!-- Delete Table
